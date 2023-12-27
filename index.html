@@ -3,88 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Portfolio</title>
+    <title>Basic Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: grid;
+            place-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #calculator {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-gap: 8px;
+            max-width: 300px;
+        }
+
+        #display {
+            grid-column: span 4;
+            padding: 8px;
+            text-align: right;
+            background-color: #eaeced;
+            border: 1px solid #000000;
+            font-size: 1.5em;
+        }
+
+        button {
+            padding: 15px;
+            font-size: 1em;
+            border: 1px solid #000000;
+            cursor: pointer;
+        }
+
+        button:active {
+            background-color: #909395;
+        }
+    </style>
 </head>
 <body>
-    <div class="header">
-        <a href="#default" class="logo">C SUKANYA</a>
-        <div class="header-right">
-          <a class="active" href="#home">HOME</a>
-          <a class="active" href="#skills">SKILLS</a>
-          <a class="active" href="#projects">PROJECTS</a>
-          <a class="active" href="#about">ABOUT</a>
-          <a class="active" href="#contact">CONTACT</a>
-        </div>
-      </div>
 
-    <section id="about">
-        <div class="container">
-            <h2>ABOUT ME</h2>
-            <p> Hi guys! I'm SUKANYA</p>
-            <img src="sukku.jpg" height="500" width="350" style="float: left" alt="SUKANYA IMAGE"/>
-            <p>Welcome to my portfolio! I am a dedicated B.Tech student. Currently pursuing my degree, I aim to leverage my
-                skills and knowledge to secure a high-paid job in the tech industry. Throughout my academic journey, I have 
-                honed my analytical abilities and developed a strong foundation in various technical domains. My commitment 
-                to excellence is evident not only in my academic pursuits but also in my hobbies, which include travelling, 
-                dancing, and reading books. As you explore my portfolio, you'll gain insights into my academic and extracurricular 
-                achievements. I am excited about the prospect of contributing to innovative projects and am open to collaboration 
-                opportunities. Thank you for visiting, and I look forward to connecting with like-minded individuals and
-                potential employers.
-                Feel free to explore my projects, and don't hesitate to reach out for further discussion or collaboration.</p>
-        </div>
-    </section>
+<div id="calculator">
+    <div id="display">0</div>
+    <button onclick="appendInput('.')">.</button>
+    <button onclick="clearDisplay()">C</button>
+    <button onclick="appendInput('/')">/</button>
+    <button onclick="appendInput('*')">*</button>
+    <button onclick="appendInput('7')">7</button>
+    <button onclick="appendInput('8')">8</button>
+    <button onclick="appendInput('9')">9</button>
+    <button onclick="appendInput('-')">-</button>
+    <button onclick="appendInput('4')">4</button>
+    <button onclick="appendInput('5')">5</button>
+    <button onclick="appendInput('6')">6</button>
+    <button onclick="appendInput('+')">+</button>
+    <button onclick="appendInput('1')">1</button>
+    <button onclick="appendInput('2')">2</button>
+    <button onclick="appendInput('3')">3</button>
+    <button onclick="calculateResult()">=</button>
+    <button onclick="appendInput('0')">0</button>
+    
+</div>
 
-    <section id="skills">
-        <div class="container">
-            <h2>SKILLS</h2>
-            <ul>
-                <li>Full Stack Development</li>
-                <li>HTML</li>
-                <li>CSS</li>
-                <li>Python</li>
-            </ul>
-        </div>
-    </section>
+<script>
+    let display = document.getElementById('display');
+    let currentInput = '';
 
-    <section id="projects">
-        <div class="container">
-            <h2>PROJECTS</h2>
-            <div class="project">
-                <h3>Mobile App Development</h3>
-                <p>I have developed a Mobile App named TRANQUIL along with my team mates. This app is all about the extra curricular activities.
-                     The students can learn the activity in which they are interested. The trainers can take the classes in which they are 
-                     expertised. </p>
-            </div>
-            <div class="project">
-                <h3>WEB DEVELOPMENT</h3>
-                <p>This is a website that is completely related to the WATER POLLUTION. This website came from the idea of our community 
-                    service project.</p>
-            </div>
-        </div>
-    </section>
-    <section class="resume-container">
-        <h2>MY AWESOME RESUME</h2>
-        <div class="resume-download">
-            <a href="ThisPC/New Volume(D:)/Portfolio" download>Download(PDF)</a>
-        </div>
-    </section>
-        <div class="container">
-            <h2>CONTACT:</h2>
-            <ul class="social-links">
-                <li><a href="https://www.linkedin.com/in/sukanya-cheekatipalli-91a146294" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
-                <li><a href="tel:+919182657875">Phone</a></li>
-                <li><a href="https://www.instagram.com/devil_girl_from_god" target="_blank" rel="noopener noreferrer">Instagram</a></li>
-                <li><a href="mailto:sukku91826@gmail.com">Email</a></li>
-            </ul>
-        </div>
-        <footer>
-            &copy; 2024 SUKANYA. All Rights Reserved.
-            <div class="additional-links">
-                <a href="#">Terms of Service</a>
-                <a href="#">Privacy Policy</a>
-                <a href="#">Contact Us</a>
-            </div>
-        </footer>
+    function appendInput(value) {
+        currentInput += value;
+        display.textContent = currentInput;
+    }
+
+    function clearDisplay() {
+        currentInput = '';
+        display.textContent = '0';
+    }
+
+    function calculateResult() {
+        try {
+            currentInput = eval(currentInput).toString();
+            display.textContent = currentInput;
+        } catch (error) {
+            display.textContent = 'Error';
+        }
+    }
+</script>
+
 </body>
 </html>
